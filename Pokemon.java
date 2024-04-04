@@ -59,7 +59,7 @@ public class Pokemon {
     }
 
     public String toString() {
-        return (this.image == null ? "" : this.image + "\n") +
+        return (this.image == null ? "" : this.image) +
                 String.format("%s (Health: %s / 100)", this.name, this.health);
     }
 }

@@ -1,15 +1,12 @@
 public class Simulator {
     public static void main(String[] args) {
         PokemonImages images = new PokemonImages();
+    Pokemon pikachu = new Pokemon("Pikachu", images.getPokemonImage("Pikachu"));
+    System.out.println(pikachu);
 
-        String pikachuImage = images.getPokemonImage("Pikachu");
-        System.out.println("Pikachu:\n" + pikachuImage);
+    System.out.println("===========================");
 
-        Pokemon charmander = new Pokemon("Charmander");
-        String charmanderImage = images.getPokemonImage(charmander);
-        System.out.println("Charmander:\n" + charmanderImage);
-
-        String nothingImage = images.getPokemonImage("nothing");
-        System.out.println("Nothing:\n" + nothingImage);
+    Pokemon riachu = new Pokemon("Riachu");
+    System.out.println(riachu);
     }
 }
