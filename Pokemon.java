@@ -36,6 +36,47 @@ public class Pokemon {
         return this.health;
     }
 
+    public void damage(int amount) {
+        this.health -= amount;
+    }
+
+    public ArrayList<Move> getMoves() {
+        return moves;
+    }
+
+    public boolean knowsMove(Move move) {
+        return moves.contains(move);
+    }
+
+    public boolean knowsMove(String moveName) {
+        for (Move move : moves) {
+            if (move.getName().equals(moveName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean attack(Pokemon opponent, Move move) {
+        if (!knowsMove(move)) {
+            return false;
+        }
+        opponent.damage(move.getDamage());
+        return true;
+    }
+
+    public boolean attack(Pokemon opponent, String moveName) {
+        if (!knowsMove(moveName)) {
+            return false;
+        }
+        for (Move move : moves) {
+            if (move.getName().equals(moveName)) {
+                opponent.damage(move.getDamage());
+            }
+        }
+        return true;
+    }
+
     public boolean hasFainted() {
         return this.health <= 0;
     }
