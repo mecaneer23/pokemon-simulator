@@ -12,7 +12,7 @@ public class PokemonTrainer {
     }
 
     public boolean addPokemon(Pokemon pokemon) {
-        if (this.collection.size() > MAX_POKEMON) {
+        if (this.collection.size() < MAX_POKEMON) {
             this.collection.add(pokemon);
             return true;
         }
