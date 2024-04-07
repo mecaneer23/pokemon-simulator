@@ -9,7 +9,14 @@ public class Simulator {
         System.out.println("Welcome to the Pokemon Simulator!");
         System.out.println("=================================");
 
-        System.out.print("What is your trainer's name? ");
+        System.out.print("What is your first trainer's name? ");
+        setUpTrainer();
+        System.out.print("What is your second trainer's name? ");
+        setUpTrainer();
+        scan.close();
+    }
+
+    private static void setUpTrainer() {
         PokemonTrainer trainer = new PokemonTrainer(scan.nextLine());
 
         System.out.println("Hello " + trainer + "!\n");
@@ -18,7 +25,6 @@ public class Simulator {
         createPokemon(scan.nextLine(), trainer);
         System.out.print("What is your second pokemon's name? ");
         createPokemon(scan.nextLine(), trainer);
-        scan.close();
     }
 
     private static void createPokemon(String name, PokemonTrainer trainer) {
