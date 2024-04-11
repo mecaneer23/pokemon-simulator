@@ -86,7 +86,7 @@ public class Pokemon {
     }
 
     public boolean learnMove(Move move) {
-        if (!canLearnMoreMoves()) {
+        if (canLearnMoreMoves()) {
             this.moves.add(move);
             return true;
         }
