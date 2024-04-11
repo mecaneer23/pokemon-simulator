@@ -18,6 +18,9 @@ public class Simulator {
 
         playerTurn(trainer, computer);
         computerTurn(trainer, computer);
+        // add game loop
+        // check for pokemon fainting and print when they have
+        // add win condition
 
         scan.close();
     }
