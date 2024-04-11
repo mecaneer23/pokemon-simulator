@@ -19,6 +19,10 @@ public class PokemonTrainer {
         return false;
     }
 
+    public String getName() {
+        return this.name;
+    }
+
     public boolean hasLost() {
         for (Pokemon pokemon : this.collection) {
             if (!pokemon.hasFainted()) {

@@ -10,13 +10,56 @@ public class Simulator {
         System.out.println("=================================");
 
         System.out.print("What is your first trainer's name? ");
-        setUpTrainer();
-        System.out.print("What is your second trainer's name? ");
-        setUpTrainer();
+        PokemonTrainer trainer = setUpTrainer();
+
+        System.out.print("Press enter for the computer to set up their Pokemon...");
+        scan.nextLine();
+        ComputerTrainer computer = new ComputerTrainer("Computer");
+
+        playerTurn(trainer, computer);
+        computerTurn(trainer, computer);
+
         scan.close();
     }
 
-    private static void setUpTrainer() {
+    private static void computerTurn(PokemonTrainer player, ComputerTrainer computer) {
+        System.out.println(computer.getName() + "'s Turn!");
+        System.out.println(computer.getName() + " chooses:");
+        Pokemon current = computer.getNextPokemon();
+        if (current == null) {
+            return;
+        }
+        System.out.println(current);
+        Move move = computer.chooseRandomMove();
+        current.attack(player.getNextPokemon(), move);
+        System.out.println(computer.getName() + "'s " + current.getName() + " used " + move + " on "
+                + player.getName() + "'s " + player.getNextPokemon());
+        System.out.println("Press enter to continue...");
+        scan.nextLine();
+    }
+
+    private static void playerTurn(PokemonTrainer player, PokemonTrainer computer) {
+        System.out.println(player.getName() + " chooses:");
+        Pokemon current = player.getNextPokemon();
+        System.out.println(current);
+        if (current == null) {
+            return;
+        }
+        System.out.println(current);
+        System.out.println("Possible moves:");
+        for (Move move : current.getMoves()) {
+            System.out.println(move);
+        }
+        System.out.print(player.getName() + ", choose your move: ");
+        String moveName = scan.nextLine();
+        current.attack(computer.getNextPokemon(), moveName);
+        System.out.println(player.getName() + "'s " + current.getName() + " used " + moveName + " on "
+                + computer.getName() + "'s " + computer.getNextPokemon());
+        System.out.println("Press enter to continue...");
+        scan.nextLine();
+    }
+
+    private static PokemonTrainer setUpTrainer() {
         PokemonTrainer trainer = new PokemonTrainer(scan.nextLine());
 
         System.out.println("Hello " + trainer + "!\n");
@@ -25,6 +68,7 @@ public class Simulator {
         createPokemon(scan.nextLine(), trainer);
         System.out.print("What is your second pokemon's name? ");
         createPokemon(scan.nextLine(), trainer);
+        return trainer;
     }
 
     private static void createPokemon(String name, PokemonTrainer trainer) {
@@ -57,3 +101,10 @@ public class Simulator {
         }
     }
 }
+
+// A PokemonTrainer can only have one active Pokemon at a time.
+// When the active Pokemon faints, the PokemonTrainer will use their next
+// Pokemon.
+// When all of a PokemonTrainer’s Pokemon have fainted, the game is over.
+// Allow each PokemonTrainer to take turns choosing a Move for their current
+// Pokemon to use on the opponent Pokemon until one PokemonTrainer loses.
