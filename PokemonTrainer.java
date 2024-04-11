@@ -12,7 +12,7 @@ public class PokemonTrainer {
     }
 
     public boolean addPokemon(Pokemon pokemon) {
-        if (this.collection.size() < MAX_POKEMON) {
+        if (this.collection.size() < MAX_POKEMON && !this.collection.contains(pokemon)) {
             this.collection.add(pokemon);
             return true;
         }
@@ -39,5 +39,9 @@ public class PokemonTrainer {
 
     public String toString() {
         return this.name;
+    }
+
+    public void printCollectionLength() {
+        System.out.println("Collection length: " + this.collection.size());
     }
 }
