@@ -3,16 +3,16 @@ public class ComputerTrainer extends PokemonTrainer {
 
     private PokemonImages images;
 
-    public ComputerTrainer(String name) {
+    public ComputerTrainer(String name, PokemonImages images) {
         super(name);
+        this.images = images;
         while (addRandomPokemon())
             ;
-        printCollectionLength();
     }
 
     public boolean addRandomPokemon() {
         String name = POKEMON_NAMES[(int) (Math.random() * POKEMON_NAMES.length)];
-        return super.addPokemon(new Pokemon(name, images.getPokemonImage(name)));
+        return addPokemon(new Pokemon(name, images.getPokemonImage(name)));
     }
 
     public Move chooseRandomMove() {

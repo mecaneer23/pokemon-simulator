@@ -14,7 +14,7 @@ public class Simulator {
 
         System.out.print("Press enter for the computer to set up their Pokemon...");
         scan.nextLine();
-        ComputerTrainer computer = new ComputerTrainer("Computer");
+        ComputerTrainer computer = new ComputerTrainer("Computer", images);
 
         while (true) {
             playerTurn(trainer, computer);

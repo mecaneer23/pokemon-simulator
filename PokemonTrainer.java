@@ -44,8 +44,4 @@ public class PokemonTrainer {
     public String toString() {
         return this.name;
     }
-
-    public void printCollectionLength() {
-        System.out.println("Collection length: " + this.collection.size());
-    }
 }
