@@ -9,7 +9,7 @@ public class Simulator {
         System.out.println("Welcome to the Pokemon Simulator!");
         System.out.println("=================================");
 
-        System.out.print("What is your first trainer's name? ");
+        System.out.print("What is your trainer's name? ");
         PokemonTrainer trainer = setUpTrainer();
 
         System.out.print("Press enter for the computer to set up their Pokemon...");
@@ -42,9 +42,9 @@ public class Simulator {
         System.out.println(current);
         Move move = computer.chooseRandomMove();
         Pokemon opponentPokemon = player.getNextPokemon();
-        current.attack(player.getNextPokemon(), move);
+        current.attack(opponentPokemon, move);
         System.out.println(computer.getName() + "'s " + current.getName() + " used " + move + " on "
-                + player.getName() + "'s " + player.getNextPokemon());
+                + player.getName() + "'s " + opponentPokemon.getName());
         if (opponentPokemon.hasFainted()) {
             System.out.println(player.getName() + "'s " + opponentPokemon + " has fainted!");
         }
@@ -53,9 +53,9 @@ public class Simulator {
     }
 
     private static void playerTurn(PokemonTrainer player, PokemonTrainer computer) {
+        System.out.println(player.getName() + "'s Turn!");
         System.out.println(player.getName() + " chooses:");
         Pokemon current = player.getNextPokemon();
-        System.out.println(current);
         if (current == null) {
             return;
         }
@@ -67,9 +67,9 @@ public class Simulator {
         System.out.print(player.getName() + ", choose your move: ");
         String moveName = scan.nextLine();
         Pokemon opponentPokemon = computer.getNextPokemon();
-        current.attack(computer.getNextPokemon(), moveName);
+        current.attack(opponentPokemon, moveName);
         System.out.println(player.getName() + "'s " + current.getName() + " used " + moveName + " on "
-                + computer.getName() + "'s " + computer.getNextPokemon());
+                + computer.getName() + "'s " + opponentPokemon.getName());
         if (opponentPokemon.hasFainted()) {
             System.out.println(computer.getName() + "'s " + opponentPokemon.getName() + " has fainted!");
         }
